@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Liste des conférences</title>
+  <style>
+    body {
+      font-family: "Segoe UI", Roboto, sans-serif;
+      background: linear-gradient(180deg, #f1f5f9, #e2e8f0 60%);
+      color: #e5e7eb;
+      margin: 0;
+      padding: 20px;
+    }
+    h2 {
+      text-align: center;
+      color: #22d3ee;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    table {
+      width: 90%;
+      margin: 30px auto;
+      border-collapse: collapse;
+      background: rgba(17, 24, 39, 0.8);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+    }
+    th, td {
+      padding: 14px 16px;
+      border-bottom: 1px solid #1f2937;
+      text-align: left;
+    }
+    tr:first-child td {
+      background-color: #111827;
+      color: #22d3ee;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    tr:nth-child(even) {
+      background-color: rgba(255, 255, 255, 0.02);
+    }
+    tr:hover {
+      background-color: rgba(34, 211, 238, 0.1);
+      transition: background-color 0.3s;
+    }
+    a {
+      color: #22d3ee;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.2s;
+    }
+    a:hover {
+      color: #38bdf8;
+    }
+    .btn {
+      display: inline-block;
+      padding: 6px 12px;
+      background-color: #22d3ee;
+      color: #0f172a;
+      border-radius: 6px;
+      text-decoration: none;
+      transition: background-color 0.2s ease;
+    }
+    .btn:hover {
+      background-color: #38bdf8;
+    }
+  </style>
+</head>
+<body>
+
+<h2>La liste des conférences</h2>
+
+<table>
+  <tr>
+    <td>Title</td>
+    <td>Location</td>
+    <td>Details</td>
+  </tr>
+  {% for c in liste %}
+  <tr>
+    <td>{{ c.name }}</td>
+    <td>{{ c.location }}</td>
+    <td><a class="btn" href="{% url 'conference_detail' c.pk %}">Voir plus</a></td>
+  </tr>
+  {% empty %}
+  <tr><td colspan="3" style="text-align:center;">Aucune conférence trouvée</td></tr>
+  {% endfor %}
+</table>
+
+</body>
+</html>
