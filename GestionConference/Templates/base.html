@@ -1,0 +1,101 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>{% block title %}Gestion Conférences{% endblock %}</title>
+  <style>
+    /* --- Style global (même esprit que ton template de détails) --- */
+    body {
+      font-family: "Segoe UI", Roboto, sans-serif;
+      background: linear-gradient(180deg, #f1f5f9, #e2e8f0 60%);
+      color: #e5e7eb;
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* --- Barre de navigation --- */
+    nav {
+      background: rgba(17, 24, 39, 0.9);
+      padding: 15px 25px;
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    nav a {
+      color: #22d3ee;
+      text-decoration: none;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      transition: color 0.3s, transform 0.2s;
+    }
+    nav a:hover {
+      color: #38bdf8;
+      transform: scale(1.05);
+    }
+
+    /* --- Contenu principal --- */
+    main {
+      flex: 1;
+      width: 90%;
+      max-width: 1200px;
+      margin: 40px auto;
+      background: rgba(17, 24, 39, 0.8);
+      border-radius: 12px;
+      padding: 30px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+      animation: fadeIn 0.6s ease;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    h1, h2 {
+      text-align: center;
+      color: #22d3ee;
+      margin-bottom: 20px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    /* --- Pied de page --- */
+    footer {
+      background: rgba(17, 24, 39, 0.9);
+      color: #94a3b8;
+      text-align: center;
+      padding: 15px 0;
+      font-size: 14px;
+      margin-top: auto;
+    }
+
+    footer p {
+      margin: 5px 0;
+      color: #22d3ee;
+      font-weight: 500;
+    }
+  </style>
+</head>
+
+<body>
+  <nav>
+    <a href="{% url 'conference_liste' %}">📅 Conférences</a>
+  </nav>
+
+  <main>
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer>
+    <p>© 2025-2026 — Workshop Django</p>
+  </footer>
+</body>
+</html>
