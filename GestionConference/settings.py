@@ -127,3 +127,13 @@ AUTH_USER_MODEL='UserApp.User'
 LOGIN_REDIRECT_URL='conference_liste'
 LOGIN_URL = 'login'
 LOGOUT_REDIRECT_URL='login'
+# settings.py
+INSTALLED_APPS += [
+    'crispy_forms',
+    'crispy_bootstrap5',
+]
+
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+CRISPY_TEMPLATE_PACK = "bootstrap5"
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'

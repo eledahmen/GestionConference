@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block title %}{{ sub.title }}{% endblock %}
+{% block content %}
+<div class="container mt-4">
+    <h2>{{ sub.title }}</h2>
+    <p><strong>Conférence :</strong> {{ sub.conference.name }}</p>
+    <p><strong>Auteur :</strong> {{ sub.user.get_full_name|default:sub.user.username }}</p>
+    <p><strong>Statut :</strong> 
+        <span class="badge bg-info">{{ sub.get_status_display }}</span>
+    </p>
+    <p><strong>Date de soumission :</strong> {{ sub.submission_date }}</p>
+    <p><strong>Paiement :</strong> 
+        {% if sub.payed %}Payé{% else %}Non payé{% endif %}
+    </p>
+    <hr>
+    <h5>Résumé</h5>
+    <p>{{ sub.abstract|linebreaks }}</p>
+    <p><strong>Mots-clés :</strong> {{ sub.keywords }}</p>
+    {% if sub.paper %}
+    <p>
+        <a href="{{ sub.paper.url }}" target="_blank" class="btn btn-success">
+            Télécharger le PDF
+        </a>
+    </p>
+    {% endif %}
+    <a href="{% url 'submission_list' %}" class="btn btn-secondary">Retour à la liste</a>
+</div>
+{% endblock %}
