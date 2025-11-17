@@ -17,6 +17,7 @@ class ConferenceList(ListView):
     ordering = ["start_date"]
 
 
+
 class ConferenceDetail(DetailView):
     model = Conference
     context_object_name = "conference"
@@ -29,11 +30,6 @@ class ConferenceCreate(LoginRequiredMixin, CreateView):
     template_name = "conference/conference_form.html"
     success_url = reverse_lazy("conference_liste")
 
-    def dispatch(self, request, *args, **kwargs):
-        if not request.user.is_organizer():
-            messages.error(request, "Accès refusé.")
-            return redirect('conference_liste')
-        return super().dispatch(request, *args, **kwargs)
 
 
 class ConferenceUpdate(LoginRequiredMixin, UpdateView):
@@ -42,11 +38,7 @@ class ConferenceUpdate(LoginRequiredMixin, UpdateView):
     template_name = "conference/conference_form.html"
     success_url = reverse_lazy("conference_liste")
 
-    def dispatch(self, request, *args, **kwargs):
-        if not request.user.is_organizer():
-            messages.error(request, "Accès refusé.")
-            return redirect('conference_liste')
-        return super().dispatch(request, *args, **kwargs)
+   
 
 
 class ConferenceDelete(LoginRequiredMixin, DeleteView):

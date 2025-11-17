@@ -1,1 +1,11 @@
-<h2>nsdfkngksngsd,vlkqs,vdv,sdqmq</h2>
+{% extends "base.html" %}
+{% block title %}{{ conference.name }}{% endblock %}
+{% block content %}
+<h2>{{ conference.name }}</h2>
+<p><strong>Thème :</strong> {{ conference.theme }}</p>
+<p><strong>Description :</strong> {{ conference.description }}</p>
+<p><strong>Lieu :</strong> {{ conference.location }}</p>
+<p><strong>Dates :</strong> {{ conference.start_date }} → {{ conference.end_date }}</p>
+
+<a href="{% url 'conference_liste' %}" class="btn btn-secondary">← Retour</a>
+{% endblock %}
