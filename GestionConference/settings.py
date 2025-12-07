@@ -43,7 +43,7 @@ INSTALLED_APPS = [
     'ConferenceApp',
     'SessionApp',
     'SessionAppApi',
-    'securityConfigApp'
+    'securityConfig'
 
 ]
 

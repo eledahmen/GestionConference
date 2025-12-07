@@ -1,42 +1,106 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <title>{% block title %}Conférences{% endblock %}</title>
+
+    <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- STYLE PERSO -->
+    <style>
+        /* NAVBAR */
+        .navbar-custom {
+            background: linear-gradient(90deg, #0dfd95, #0aca24);
+            box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+        }
+        .navbar-custom .nav-link {
+            color: #fff !important;
+            font-weight: 500;
+            margin-left: 12px;
+            transition: 0.2s ease;
+        }
+        .navbar-custom .nav-link:hover {
+            color: #9b82ff !important;
+            transform: translateY(-1px);
+        }
+        .navbar-custom .navbar-brand {
+            font-weight: bold;
+            font-size: 1.3rem;
+            color: #fff !important;
+        }
+
+        /* CONTENU */
+        .content-wrapper {
+            background: #ffffff;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        }
+
+        /* FOOTER */
+        footer {
+            background: #0dfd21;
+            color: #fff;
+            padding: 15px;
+            margin-top: 40px;
+        }
+        footer p {
+            margin: 0;
+            font-size: 0.9rem;
+        }
+
+        body {
+            background: #f5f7fa;
+        }
+    </style>
 </head>
+
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg navbar-custom">
         <div class="container">
-            <a class="navbar-brand" href="{% url 'conference_liste' %}">HOME</a>
-            <div class="navbar-nav ms-auto">
-                
-                <!-- LIEN "CONFÉRENCES" : UNIQUEMENT SI CONNECTÉ -->
-                {% if user.is_authenticated %}
-                    <a class="nav-link" href="{% url 'conference_liste' %}">Conférences</a>
-                {% endif %}
+            <a class="navbar-brand" href="{% url 'conference_liste' %}">Conférences</a>
 
-                <a class="nav-link" href="#">Contact</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-                {% if user.is_authenticated %}
-                    <span class="navbar-text">{{ user.username }}</span>
-                    <a class="nav-link" href="{% url 'submission_list' %}">Mes soumissions</a>
-                    <a class="nav-link" href="{% url 'logout' %}">LOGOUT</a>
-                {% else %}
-                    <a class="nav-link" href="{% url 'login' %}">LOGIN</a>
-                    <a class="nav-link" href="{% url 'register' %}">INSCRIPTION</a>
-                {% endif %}
+            <div class="collapse navbar-collapse" id="menu">
+                <ul class="navbar-nav ms-auto">
+
+                    {% if user.is_authenticated %}
+                        <li class="nav-item"><a class="nav-link" href="{% url 'conference_liste' %}">Conférences</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'submission_list' %}">Mes soumissions</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">{{ user.username }}</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}">Logout</a></li>
+                    {% else %}
+                        <li class="nav-item"><a class="nav-link" href="{% url 'login' %}">Login</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'register' %}">Inscription</a></li>
+                    {% endif %}
+
+                    <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
+
+                </ul>
             </div>
         </div>
     </nav>
 
-    <div class="container mt-4">
-        {% block content %}{% endblock %}
+    <!-- CONTENU -->
+    <div class="container mt-4 mb-5">
+        <div class="content-wrapper">
+            {% block content %}{% endblock %}
+        </div>
     </div>
 
-    <footer class="text-center py-3">
-        <p>2025-2026</p>
-        <p>Workshop Django</p>
+    <!-- FOOTER -->
+    <footer class="text-center">
+        <p>2025 – Workshop Django – Gestion de Conférences</p>
     </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
 </body>
 </html>

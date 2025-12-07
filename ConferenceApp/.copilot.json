@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "conference_assistant": {
+      "command": "py",
+      "args": ["mcp_server.py"],
+      "cwd": "D:\\bureau\\django\\GestionConference"
+    }
+  }
+}
